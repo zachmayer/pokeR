@@ -30,19 +30,17 @@ IntegerVector GetMultiHandValue(IntegerVector multicards, IntegerVector HR) {
   IntegerVector out(n);
   int p = 0;
 
-  std::vector<int> multicards2 = Rcpp::as<std::vector<int> >(multicards);
-  std::vector<int> HR2 = Rcpp::as<std::vector<int> >(HR);
-  std::vector<int>::iterator pCards = multicards2.begin();
+  std::vector<int>::iterator pCards = multicards.begin();
 
   //#pragma omp parallel for private(p, pCards) default(shared) schedule(auto)
   for (int i = 0; i < n; ++i){
-    p = HR2[53 + *pCards++];
-    p = HR2[p + *pCards++];
-    p = HR2[p + *pCards++];
-    p = HR2[p + *pCards++];
-    p = HR2[p + *pCards++];
-    p = HR2[p + *pCards++];
-    out[i] = HR2[p + *pCards++];
+    p = HR[53 + *pCards++];
+    p = HR[p + *pCards++];
+    p = HR[p + *pCards++];
+    p = HR[p + *pCards++];
+    p = HR[p + *pCards++];
+    p = HR[p + *pCards++];
+    out[i] = HR[p + *pCards++];
   }
   return out;
 }

@@ -9,3 +9,7 @@ GetMultiHandValue <- function(multicards, HR) {
     .Call('pokeR_GetMultiHandValue', PACKAGE = 'pokeR', multicards, HR)
 }
 
+GetMultiHandValueSpecialK <- function(multicards) {
+    .Call('pokeR_GetMultiHandValueSpecialK', PACKAGE = 'pokeR', multicards)
+}
+

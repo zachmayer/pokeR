@@ -2,6 +2,7 @@
 
 export(evalHand)
 export(evalMultiHand)
+export(evalMultiHandSpecialK)
 export(mapCards)
 importFrom(Rcpp,sourceCpp)
 importFrom(bitops,bitAnd)

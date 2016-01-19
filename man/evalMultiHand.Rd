@@ -7,7 +7,7 @@
 evalMultiHand(x)
 }
 \arguments{
-\item{x}{an integer matrix, where each column is a hand, or an integer vector.}
+\item{x}{An integer vector.}
 }
 \value{
 an integer, where higher = better
@@ -22,8 +22,11 @@ No details
 No notes
 }
 \examples{
-cards <- sapply(1:1e7, function(x) sample(1:52, 7))
-system.time(res <- evalMultiHand(cards))
+n <- 2e7 #20 million hands
+cards <- sample(1:52, 7*n, replace=TRUE)
+t1 <- system.time(res <- evalMultiHand(cards))
+hps <- prettyNum(n / t1[['elapsed']],big.mark=",",scientific=FALSE)
+print(paste("evaluated", hps, "poker hands per second"))
 }
 \references{
 \url{https://gist.github.com/EluctariLLC/832122}

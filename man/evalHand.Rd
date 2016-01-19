@@ -7,7 +7,7 @@
 evalHand(x)
 }
 \arguments{
-\item{x}{an integer matrix, where each column is a hand, or an integer vector.}
+\item{x}{An integer vector.}
 }
 \value{
 an integer, where higher = better

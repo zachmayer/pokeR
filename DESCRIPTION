@@ -5,14 +5,17 @@ Version: 0.1
 Date: 2014-01-29
 Author: Zach Mayer
 Maintainer: <zach.mayer@gmail.com>
+Description: A fast poker hand evaluator.
 Depends:
     R (>= 1.14.0),
     Rcpp
-Description: A fast poker hand evaluator.
+Imports:
+    Rcpp (>= 0.12.3)
+Suggests:
+    pbapply,
+    microbenchmark
 License: GPL (>= 3)
 ByteCompile: yes
 NeedsCompilation: yes
-Imports:
-    Rcpp (>= 0.12.3)
 LinkingTo: Rcpp
 RoxygenNote: 5.0.1

@@ -28,8 +28,9 @@ int GetHandValue(IntegerVector cards, IntegerVector HR){
 IntegerVector GetMultiHandValue(IntegerVector multicards, IntegerVector HR) {
   int n = multicards.size()/7;
   IntegerVector out(n);
-  int p = 0;
   IntegerVector::iterator pCards = multicards.begin();
+
+  int p = 0;
 
   //#pragma omp parallel for private(p, pCards) default(shared) schedule(auto)
   for (int i = 0; i < n; ++i){

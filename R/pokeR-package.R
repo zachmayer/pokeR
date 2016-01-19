@@ -7,7 +7,3 @@
 #' @useDynLib pokeR
 #' @importFrom Rcpp sourceCpp
 NULL
-
-.onLoad <- function(libname, pkgname) {
-  data("handRanks", package=pkgname, envir=parent.env(environment()))
-}

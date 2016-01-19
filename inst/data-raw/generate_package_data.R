@@ -1,3 +1,8 @@
+library(pbapply)
+######################
+# Internal data
+######################
+
 handRanks <- readBin(
   'inst/data-raw/HandRanks.dat',
   integer(), endian = "little", n=32488834)
@@ -35,3 +40,7 @@ devtools::use_data(
   compress='bzip2',
   overwrite=TRUE,
   internal=TRUE)
+
+######################
+# External data
+######################

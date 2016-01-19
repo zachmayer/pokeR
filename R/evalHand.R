@@ -23,7 +23,7 @@ mapCards <- function(x){
 #'
 #' @note No notes
 #'
-#' @param x an integer matrix, where each column is a hand, or an integer vector.
+#' @param x An integer vector.
 #' @return an integer, where higher = better
 #' @references \url{https://gist.github.com/EluctariLLC/832122}
 #' @importFrom bitops bitShiftR bitAnd
@@ -53,24 +53,59 @@ evalHand <- function(x) {
 #'
 #' @note No notes
 #'
-#' @param x an integer matrix, where each column is a hand, or an integer vector.
-#' @param threads Number of openmp threads to use
+#' @param x An integer vector.
 #' @return an integer, where higher = better
 #' @references \url{https://gist.github.com/EluctariLLC/832122}
 #' @importFrom bitops bitShiftR bitAnd
 #' @export
 #' @examples
-n <- 2e8 #20 million hands
-cards <- sample(1:52, 7*n, replace=TRUE)
-t1 <- system.time(res <- evalMultiHand(cards))
-hps <- prettyNum(n / t1[['elapsed']],big.mark=",",scientific=FALSE)
-print(paste("evaluated", hps, "poker hands per second"))
+#' n <- 2e7 #20 million hands
+#' cards <- sample(1:52, 7*n, replace=TRUE)
+#' t1 <- system.time(res <- evalMultiHand(cards))
+#' hps <- prettyNum(n / t1[['elapsed']],big.mark=",",scientific=FALSE)
+#' print(paste("evaluated", hps, "poker hands per second"))
 evalMultiHand <- function(x) {
   stopifnot(is.integer(x))
   stopifnot(is.vector(x))
+  stopifnot(min(x)>=1)
+  stopifnot(max(x)<=52)
   if(anyNA(x)){stop('x must not have NAs')}
   stopifnot(length(x) %% 7 == 0)
   rank <- GetMultiHandValue(x, handRanks)
+  list(
+    rank=rank,
+    besthand=which.max(rank)
+  )
+}
+
+#' @title Evaluate multiple poker hands using the SpecialK evaluator
+#'
+#' @description Returns an integer vector, where higher = a better hand
+#'
+#' @details No details
+#'
+#' @note No notes
+#'
+#' @param x An integer vector.
+#' @return an integer, where higher = better
+#' @references \url{https://gist.github.com/EluctariLLC/832122}
+#' @importFrom bitops bitShiftR bitAnd
+#' @export
+#' @examples
+#' n <- 2e7 #20 million hands
+#' cards <- sample(1:52, 7*n, replace=TRUE)
+#' t1 <- system.time(res_sk <- evalMultiHandSpecialK(cards))
+#' hps <- prettyNum(n / t1[['elapsed']],big.mark=",",scientific=FALSE)
+#' print(paste("evaluated", hps, "poker hands per second"))
+evalMultiHandSpecialK <- function(x) {
+  stopifnot(is.integer(x))
+  stopifnot(is.vector(x))
+  stopifnot(min(x)>=1)
+  stopifnot(max(x)<=52)
+  if(anyNA(x)){stop('x must not have NAs')}
+  x <- x - 1L
+  stopifnot(length(x) %% 7 == 0)
+  rank <- GetMultiHandValueSpecialK(x)
   list(
     rank=rank,
     besthand=which.max(rank)

@@ -29,3 +29,14 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// GetMultiHandValueSpecialK
+IntegerVector GetMultiHandValueSpecialK(IntegerVector multicards);
+RcppExport SEXP pokeR_GetMultiHandValueSpecialK(SEXP multicardsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< IntegerVector >::type multicards(multicardsSEXP);
+    __result = Rcpp::wrap(GetMultiHandValueSpecialK(multicards));
+    return __result;
+END_RCPP
+}

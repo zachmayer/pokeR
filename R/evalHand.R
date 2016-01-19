@@ -60,8 +60,11 @@ evalHand <- function(x) {
 #' @importFrom bitops bitShiftR bitAnd
 #' @export
 #' @examples
-#' cards <- sample(1:52, 7*2e7, replace=TRUE) #20 million hands
-#' system.time(res <- evalMultiHand(cards))
+n <- 2e8 #20 million hands
+cards <- sample(1:52, 7*n, replace=TRUE)
+t1 <- system.time(res <- evalMultiHand(cards))
+hps <- prettyNum(n / t1[['elapsed']],big.mark=",",scientific=FALSE)
+print(paste("evaluated", hps, "poker hands per second"))
 evalMultiHand <- function(x) {
   stopifnot(is.integer(x))
   stopifnot(is.vector(x))

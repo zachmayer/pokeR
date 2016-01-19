@@ -1,0 +1,7 @@
+.Rproj.user
+.Rhistory
+.RData
+
+#Get from:
+#https://github.com/chenosaurus/poker-evaluator/blob/master/data/HandRanks.dat
+inst/data-raw/HandRanks.dat
